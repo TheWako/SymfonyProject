@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1><a href="{{ path("index_page")}}">Symfony Rattrapage</a></h1>
+<div class="container">
+	<div class="postBlock" style="float: left;width: 20%;">
+		<span class="title">
+			<p>Articles disponibles</p><br>
+		</span>
+		{% for post in posts %}
+			<a href="{{ path("show_page", {'slug': post.slug})}}">
+				<p>{{ post.title }}</p>
+			</a>
+		{% endfor %}
+	</div>
+	{% for post in post %}
+		<div class="postBlock" style="float: right;width: 74%;">
+			<div class="titleBlock">
+				<span class="title">
+					{#<a href="{{ path("blog_show", {'slug': post.slug})}}">#}
+						{{ post.title }}
+					{#</a>#}
+				</span>
+			</div>
+			<div class="contentBlock">
+				{{ post.content }}
+			</div>
+		</div>
+	{#{% if(is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR')) %}
+		#}
+		<a href="{{ path('post_edit', {'id': post.id})}}" style="float: right;">
+					<button>
+	        			Modifier / Supprimer
+	        		</button>
+	    		</a>
+	    <a href="{{ path('index_page')}}" style="float: right;">
+					<button>
+	        			Retour à l'accueil
+	        		</button>
+	    		</a>
+	{#{% endif %}#}
+		{% endfor %}
+</div>
+{% endblock %}

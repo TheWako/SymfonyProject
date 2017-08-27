@@ -1,0 +1,6 @@
+services:
+    admin.post:
+        class: MainBundle\Admin\PostAdmin
+        arguments: [~, MainBundle\Entity\Post, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Post }
